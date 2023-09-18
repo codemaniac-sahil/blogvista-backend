@@ -1,4 +1,4 @@
-import Blog from "../database/model/blog.js";
+const Blog = require("../database/model/blog");
 const unlikePost = async (req, res) => {
   try {
     const post = await Blog.findById(req.params.id);
@@ -20,4 +20,4 @@ const unlikePost = async (req, res) => {
     res.status(400).json({ msg: "Bad Request" });
   }
 };
-export default unlikePost;
+module.exports = unlikePost;

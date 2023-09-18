@@ -1,4 +1,4 @@
-import Blog from "../database/model/blog.js";
+const Blog = require("../database/model/blog");
 
 const updateBlog = async (req, res) => {
   const image = req.file ? req.file.url : null;
@@ -39,4 +39,4 @@ const updateBlog = async (req, res) => {
     res.status(500).json("Error updating blog");
   }
 };
-export default updateBlog;
+module.exports = updateBlog;

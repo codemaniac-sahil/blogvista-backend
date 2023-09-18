@@ -1,5 +1,6 @@
-import env from "dotenv";
-import jwt from "jsonwebtoken";
+const env = require("dotenv");
+
+const jwt = require("jsonwebtoken");
 env.config();
 
 const secret = process.env.TOKEN_KEY;
@@ -19,4 +20,4 @@ function verifyToken(req, res, next) {
     next();
   });
 }
-export default verifyToken;
+module.exports = verifyToken;

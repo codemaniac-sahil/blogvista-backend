@@ -1,11 +1,11 @@
-import express from "express";
-import dbconnection from "./database/dbconnect.js";
-import authRoute from "./routes/authRoutes.js";
-import bodyParser from "body-parser";
-import userRoute from "./routes/userRoute.js";
-import blogRoute from "./routes/blogRoute.js";
+const express = require("express");
+const dbconnection = require("./database/dbconnect");
+const authRoute = require("./routes/authRoutes.js");
+const bodyParser = require("body-parser");
+const userRoute = require("./routes/userRoute.js");
+const blogRoute = require("./routes/blogRoute.js");
+const cookieParser = require("cookie-parser");
 
-import cookieParser from "cookie-parser";
 const PORT = 8000;
 dbconnection();
 const app = express();

@@ -1,4 +1,4 @@
-import User from "../database/model/user.js";
+const User = require("../database/model/user");
 
 const userInfo = async (req, res) => {
   try {
@@ -8,4 +8,4 @@ const userInfo = async (req, res) => {
     res.status(404).json({ message: "User did not exit" });
   }
 };
-export default userInfo;
+module.exports = userInfo;

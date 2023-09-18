@@ -1,11 +1,11 @@
-import express from "express";
-import handleSignUp from "../controller/signup.js";
-import upload from "../azuremulter/azuremulter.js";
-import login from "../controller/login.js";
+const express = require("express");
+const handleSignUp = require("../controller/signup");
+const upload = require("../azuremulter/azuremulter");
+const login = require("../controller/login");
 
 const router = express.Router();
 
 router.post("/signup", upload.single("img"), handleSignUp);
 router.post("/login", login);
 
-export default router;
+module.exports = router;

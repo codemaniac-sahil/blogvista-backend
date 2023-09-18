@@ -1,9 +1,9 @@
-import express from "express";
+const express = require("express");
 
-import userInfo from "../controller/userInfo.js";
+const userInfo = require("../controller/userInfo");
 
 const router = express.Router();
 
 router.get("/getuserinfo/:id", userInfo);
 
-export default router;
+module.exports = router;

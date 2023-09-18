@@ -1,10 +1,10 @@
-import Blog from "../database/model/blog.js";
+const Blog = require("../database/model/blog");
 
 const likePost = async (req, res) => {
   try {
     const post = await Blog.findById(req.params.id);
     // Check if the post has already been liked
-    console.log(post);
+
     if (
       post.likes.filter((like) => like.user.toString() === req.body.userId)
         .length > 0
@@ -19,4 +19,4 @@ const likePost = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
-export default likePost;
+module.exports = likePost;

@@ -1,5 +1,5 @@
-import User from "../database/model/user.js";
-import bcrypt from "bcrypt";
+const User = require("../database/model/user");
+const bcrypt = require("bcrypt");
 
 const handleSignUp = async (req, res) => {
   try {
@@ -36,4 +36,4 @@ const handleSignUp = async (req, res) => {
     console.log("Gott an error", error);
   }
 };
-export default handleSignUp;
+module.exports = handleSignUp;

@@ -1,7 +1,7 @@
-import dotenv from "dotenv";
+const dotenv = require("dotenv");
 
-import multer from "multer";
-import { MulterAzureStorage } from "multer-azure-blob-storage";
+const multer = require("multer");
+const { MulterAzureStorage } = require("multer-azure-blob-storage");
 
 const allowedFiles = ["image/jpeg", "image/jpg", "image/png"];
 
@@ -25,4 +25,4 @@ const upload = multer({
     }
   },
 });
-export default upload;
+module.exports = upload;

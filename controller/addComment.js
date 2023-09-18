@@ -1,4 +1,4 @@
-import Blog from "../database/model/blog.js";
+const Blog = require("../database/model/blog");
 const addComment = async (req, res) => {
   try {
     const post = await Blog.findById(req.params.id);
@@ -14,4 +14,4 @@ const addComment = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
-export default addComment;
+module.exports = addComment;

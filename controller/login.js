@@ -1,7 +1,7 @@
-import User from "../database/model/user.js";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import env from "dotenv";
+const User = require("../database/model/user");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const env = require("dotenv");
 
 env.config();
 
@@ -22,4 +22,4 @@ const login = async (req, res) => {
   // });
   res.json({ token });
 };
-export default login;
+module.exports = login;

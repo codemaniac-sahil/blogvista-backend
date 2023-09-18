@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import env from "dotenv";
+const mongoose = require("mongoose");
+const env = require("dotenv");
 
 env.config();
 const dbconnection = async () => {
@@ -8,4 +8,4 @@ const dbconnection = async () => {
     .then(() => console.log("Connection to CosmosDB successful"))
     .catch((err) => console.error(err));
 };
-export default dbconnection;
+module.exports = dbconnection;

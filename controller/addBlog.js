@@ -1,5 +1,5 @@
-import User from "../database/model/user.js";
-import Blog from "../database/model/blog.js";
+const User = require("../database/model/user");
+const Blog = require("../database/model/blog");
 
 const createBlog = async (req, res) => {
   try {
@@ -24,4 +24,4 @@ const createBlog = async (req, res) => {
     res.status(400).json({ message: "Blog did not created" });
   }
 };
-export default createBlog;
+module.exports = createBlog;
