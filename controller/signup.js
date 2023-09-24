@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 
 const handleSignUp = async (req, res) => {
   try {
-    const image = req.file ? req.file.url : null;
+    const image = req.file ? req.file.url.split("?")[0] : null;
     if (
       !(
         req.body.email &&
