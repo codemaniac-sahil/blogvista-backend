@@ -3,7 +3,8 @@ const Blog = require("../database/model/blog");
 
 const createBlog = async (req, res) => {
   try {
-    const image = req.file ? req.file.url : null;
+    console.log(req.file.url.split("?"));
+    const image = req.file ? req.file.url.split("?")[0] : null;
     const userId = req.user.id;
 
     const user = await User.findById(userId);
