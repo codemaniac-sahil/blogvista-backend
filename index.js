@@ -5,12 +5,12 @@ const bodyParser = require("body-parser");
 const userRoute = require("./routes/userRoute.js");
 const blogRoute = require("./routes/blogRoute.js");
 const cookieParser = require("cookie-parser");
-
+const cors=require('cors');
 const PORT = 8000;
 dbconnection();
 const app = express();
 app.use(bodyParser.json({ extended: true }));
-
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
