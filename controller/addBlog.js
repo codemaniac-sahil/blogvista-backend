@@ -13,6 +13,7 @@ const createBlog = async (req, res) => {
       title: req.body.title,
       content: req.body.content,
       blogThumbnail: image,
+      createdBy: user._id,
     };
     const newBlog = new Blog(blog);
     await newBlog.save();
