@@ -6,18 +6,16 @@ env.config();
 const secret = process.env.TOKEN_KEY;
 
 function verifyToken(req, res, next) {
-  const token = req.headers["authorization"].split(" ")[1];
-
+  const token = req.cookies.token;
   if (!token) {
-    return res.status(403).json({ error: "Token not provided" });
+    return res.json({ status: false });
   }
-
-  jwt.verify(token, secret, (err, decoded) => {
+  jwt.verify(token, process.env.TOKEN_KEY, async (err, data) => {
     if (err) {
-      return res.status(401).json({ error: "Invalid token" });
+      return res.json({ status: false });
+    } else {
+      next();
     }
-    req.user = decoded;
-    next();
   });
 }
 module.exports = verifyToken;

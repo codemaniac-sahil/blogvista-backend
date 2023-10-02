@@ -1,11 +1,23 @@
 const User = require("../database/model/user");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 const userInfo = async (req, res) => {
+  const token = req.cookies.token;
+
+  if (!token) {
+    return res.json({ status: false });
+  }
   try {
-    const user = await User.findById(req.params.id);
-    res.status(200).json({ user });
-  } catch (error) {
-    res.status(404).json({ message: "User did not exit" });
+    const data = jwt.verify(token, process.env.TOKEN_KEY);
+
+    const user = await User.find({ _id: data.id }).populate("blog");
+
+    res.status(201).json(user);
+  } catch (err) {
+    return res.json({ status: false, err: err.message });
   }
 };
+// const user = await User.findById(req.params.id);
+// if (user) {
 module.exports = userInfo;

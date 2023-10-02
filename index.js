@@ -5,12 +5,18 @@ const bodyParser = require("body-parser");
 const userRoute = require("./routes/userRoute.js");
 const blogRoute = require("./routes/blogRoute.js");
 const cookieParser = require("cookie-parser");
-const cors=require('cors');
+const cors = require("cors");
 const PORT = 8000;
 dbconnection();
 const app = express();
 app.use(bodyParser.json({ extended: true }));
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "http://192.168.1.5:3000"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 

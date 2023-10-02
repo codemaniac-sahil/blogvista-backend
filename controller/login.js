@@ -2,6 +2,7 @@ const User = require("../database/model/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const env = require("dotenv");
+const { createSecretToken } = require("../tokenGeneration/generateToken");
 
 env.config();
 
@@ -16,10 +17,11 @@ const login = async (req, res) => {
   if (!(user && (await bcrypt.compare(password, user.password)))) {
     return res.status(404).json({ message: "Invalid credentials" });
   }
-  const token = jwt.sign({ id: user._id, username: user.username }, secret);
-  // res.cookie("jwt", token, {
-  //   httpOnly: true,
-  // });
+  const token = createSecretToken(user._id);
+  res.cookie("token", token, {
+    withCredentials: true,
+    httpOnly: true,
+  });
   res.json({ token });
 };
 module.exports = login;

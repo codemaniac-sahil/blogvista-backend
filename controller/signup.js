@@ -1,5 +1,6 @@
 const User = require("../database/model/user");
 const bcrypt = require("bcrypt");
+const { createSecretToken } = require("../tokenGeneration/generateToken");
 
 const handleSignUp = async (req, res) => {
   try {
@@ -31,6 +32,11 @@ const handleSignUp = async (req, res) => {
       profilePic: image,
     });
     const user = await newUser.save();
+    const token = createSecretToken(user._id);
+    res.cookie("token", token, {
+      withCredentials: true,
+      httpOnly: false,
+    });
     res.json(user);
   } catch (error) {
     console.log("Gott an error", error);

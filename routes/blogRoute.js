@@ -7,6 +7,9 @@ const likePost = require("../controller/likePost");
 const unlikePost = require("../controller/unlikePost");
 const addComment = require("../controller/addComment");
 const getAllBlog = require("../controller/getAllblog");
+const getsSingleBlog = require("../controller/getSingleBlog");
+const getComments = require("../controller/getComments");
+const deleteComment = require("../controller/deleteComment");
 
 const router = express.Router();
 
@@ -17,8 +20,11 @@ router.put(
   verifyToken,
   updateBlog
 );
-router.put("/like/:id", likePost);
-router.put("/unlike/:id", unlikePost);
-router.put("/addcomment/:id", addComment);
+router.put("/like/:id", verifyToken, likePost);
+router.put("/unlike/:id", verifyToken, unlikePost);
+router.put("/addcomment/:id", verifyToken, addComment);
 router.get("/getblogs", getAllBlog);
+router.get("/getblog/:id", getsSingleBlog);
+router.get("/getcomments/:id", getComments);
+router.delete("/deletecomment/:id/:commentId", verifyToken, deleteComment);
 module.exports = router;

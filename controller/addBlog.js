@@ -1,12 +1,20 @@
 const User = require("../database/model/user");
 const Blog = require("../database/model/blog");
-
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 const createBlog = async (req, res) => {
   try {
-    console.log(req.file.url.split("?"));
+    // console.log(req.file.url.split("?"));
     const image = req.file ? req.file.url.split("?")[0] : null;
-    const userId = req.user.id;
+    const token = req.cookies.token;
+    console.log(token);
+    if (!token) {
+      return res.json({ status: false });
+    }
 
+    const verifiedUser = jwt.verify(token, process.env.TOKEN_KEY);
+    console.log(verifiedUser);
+    const userId = verifiedUser.id;
     const user = await User.findById(userId);
 
     const blog = {

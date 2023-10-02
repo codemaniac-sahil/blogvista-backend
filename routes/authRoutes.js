@@ -7,5 +7,8 @@ const router = express.Router();
 
 router.post("/signup", upload.single("img"), handleSignUp);
 router.post("/login", login);
-
+router.get("/logout", (req, res) => {
+  res.clearCookie("token");
+  res.json({ message: "Logged out" });
+});
 module.exports = router;
