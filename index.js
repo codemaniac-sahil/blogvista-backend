@@ -12,7 +12,7 @@ const app = express();
 app.use(bodyParser.json({ extended: true }));
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://192.168.1.5:3000"],
+    origin: ["https://bloggle-vista.netlify.app/"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
