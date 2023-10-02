@@ -19,7 +19,7 @@ const likePost = async (req, res) => {
       return res.status(400).json({ msg: "Post already liked" });
     }
     post.likes.unshift({ user: userId });
-    console.log(post.likes);
+
     await post.save();
     res.json(post.likes);
   } catch (err) {
