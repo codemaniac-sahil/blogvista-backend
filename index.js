@@ -16,7 +16,7 @@ app.use((req, res, next) => {
   // Set CORS headers
   res.header(
     "Access-Control-Allow-Origin",
-    "https://bloogle-vista.azurewebsites.net"
+    "https://bloggle-vista.azurewebsites.net"
   ); // Replace with your frontend domain
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
