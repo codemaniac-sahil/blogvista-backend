@@ -12,7 +12,7 @@ function verifyToken(req, res, next) {
   }
   jwt.verify(token, process.env.TOKEN_KEY, async (err, data) => {
     if (err) {
-      return res.json({ status: false });
+      return res.json({ status: false, err });
     } else {
       next();
     }

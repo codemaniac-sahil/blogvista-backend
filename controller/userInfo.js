@@ -15,7 +15,7 @@ const userInfo = async (req, res) => {
 
     res.status(201).json(user);
   } catch (err) {
-    return res.json({ status: false, err: err.message });
+    return res.json({ err: err.message });
   }
 };
 // const user = await User.findById(req.params.id);
