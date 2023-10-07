@@ -14,7 +14,7 @@ app.use(
   cors({
     origin: [
       // "http://localhost:3000",
-      "https://bloogle-vista.azurewebsites.net/",
+      "https://bloogle-vista.azurewebsites.net",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
