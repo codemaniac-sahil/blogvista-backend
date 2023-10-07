@@ -10,16 +10,31 @@ const PORT = 8000;
 dbconnection();
 const app = express();
 app.use(bodyParser.json({ extended: true }));
-app.use(
-  cors({
-    origin: [
-      // "http://localhost:3000",
-      "https://bloogle-vista.azurewebsites.net",
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
-);
+// app.setHeader("Access-Control-Allow-Credentials", "true");
+
+app.use((req, res, next) => {
+  // Set CORS headers
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://bloogle-vista.azurewebsites.net"
+  ); // Replace with your frontend domain
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Credentials", "true"); // Allow credentials (cookies, etc.)
+
+  // Pass to next layer of middleware
+  next();
+});
+// app.use(
+//   cors({
+//     origin: [
+//       // "http://localhost:3000",
+//       "https://bloogle-vista.azurewebsites.net",
+//     ],
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     credentials: true,
+//   })
+// );
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
