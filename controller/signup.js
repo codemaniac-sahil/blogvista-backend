@@ -33,6 +33,7 @@ const handleSignUp = async (req, res) => {
     });
     const user = await newUser.save();
     const token = createSecretToken(user._id);
+
     // res.cookie("token", token, {
     //   domain: "bloogle-vista.azurewebsites", // Set your domain here
     //   path: "/", // Cookie is accessible from all paths
@@ -42,12 +43,12 @@ const handleSignUp = async (req, res) => {
     //   sameSite: "None",
     // });
     res.cookie("token", token, {
-      domain: "https://bloogle-vista.azurewebsites.net",
       httpOnly: true,
       secure: true,
       sameSite: "None",
     });
     console.log("cookie set succesfully");
+
     res.json(user);
   } catch (error) {
     console.log("Gott an error", error);
