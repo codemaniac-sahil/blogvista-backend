@@ -27,9 +27,11 @@ const login = async (req, res) => {
   //   sameSite: "None",
   // });
   res.cookie("token", token, {
+    domain: ".bloggle-vista.azurewebsites.net",
+    path: "/",
     httpOnly: true,
     secure: true,
-    sameSite: "None",
+    // sameSite: "None",
   });
 
   res.json({ token });
