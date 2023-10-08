@@ -43,7 +43,7 @@ const handleSignUp = async (req, res) => {
     //   sameSite: "None",
     // });
     res.cookie("token", token, {
-      domain: ".bloggle-vista.azurewebsites.net",
+      domain: process.env.FRONTENT_DOMAIN,
       path: "/",
       httpOnly: true,
       secure: true,

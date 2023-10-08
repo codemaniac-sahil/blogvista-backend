@@ -1,12 +1,10 @@
 const User = require("../database/model/user");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+
 const env = require("dotenv");
 const { createSecretToken } = require("../tokenGeneration/generateToken");
 
 env.config();
-
-const secret = process.env.TOKEN_KEY;
 
 const login = async (req, res) => {
   const { email, password } = req.body;
@@ -27,7 +25,7 @@ const login = async (req, res) => {
   //   sameSite: "None",
   // });
   res.cookie("token", token, {
-    domain: ".bloggle-vista.azurewebsites.net",
+    domain: process.env.FRONTENT_DOMAIN,
     path: "/",
     httpOnly: true,
     secure: true,
