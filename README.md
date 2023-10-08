@@ -42,6 +42,28 @@ npm install
 **Tools**  Azure Virtual machine, Azure cosmosDB, Azure storage services
 
 
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+
+`COSMOS_DB_URL`
+
+`AZURE_BLOB_STORAGE_CONNECTION_STRING`
+
+`CONTAINER_NAME`
+
+`STORAGE_ACCOUNT_NAME`
+
+`ACCESS_KEY`
+
+`TOKEN_KEY`
+
+`FRONTEND_URL`
+
+`FRONTENT_DOMAIN`
+
+
 
 
 ## Demo
