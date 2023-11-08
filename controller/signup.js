@@ -44,7 +44,7 @@ const handleSignUp = async (req, res) => {
     //   sameSite: "None",
     // });
     res.cookie("token", token, {
-      domain: process.env.FRONTENT_DOMAIN,
+      // domain: process.env.FRONTENT_DOMAIN,
       path: "/",
       httpOnly: true,
       secure: true,
