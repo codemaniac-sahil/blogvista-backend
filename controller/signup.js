@@ -5,7 +5,7 @@ const cloudinary = require("../cloudinary/cloudinary");
 
 const handleSignUp = async (req, res) => {
   try {
-    const image = await cloudinary.uploader.upload(req.file.path);
+    const image = req.file ? req.file.url.split("?")[0] : null;
     if (
       !(
         req.body.email &&
@@ -30,7 +30,7 @@ const handleSignUp = async (req, res) => {
       username: req.body.username,
       email: req.body.email,
       password: hashedPassword,
-      profilePic: image.secure_url,
+      profilePic: image,
     });
     const user = await newUser.save();
     const token = createSecretToken(user._id);

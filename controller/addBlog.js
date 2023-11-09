@@ -1,13 +1,12 @@
 const User = require("../database/model/user");
 const Blog = require("../database/model/blog");
 const jwt = require("jsonwebtoken");
-const cloudinary = require("../cloudinary/cloudinary");
 
 require("dotenv").config();
 const createBlog = async (req, res) => {
   try {
     // console.log(req.file.url.split("?"));
-    const result = await cloudinary.uploader.upload(req.file.path);
+    const image = req.file ? req.file.url.split("?")[0] : null;
     const token = req.cookies.token;
     console.log(token);
     if (!token) {
@@ -22,7 +21,7 @@ const createBlog = async (req, res) => {
     const blog = {
       title: req.body.title,
       content: req.body.content,
-      blogThumbnail: result.secure_url,
+      blogThumbnail: image,
       createdBy: user._id,
     };
     const newBlog = new Blog(blog);

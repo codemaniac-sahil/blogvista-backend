@@ -3,16 +3,9 @@ const env = require("dotenv");
 
 env.config();
 const dbconnection = async () => {
-  mongoose.set("strictQuery", false);
-  const URL = process.env.MONGO_URL;
-  try {
-    await mongoose.connect(URL, {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-    });
-    console.log("database connected");
-  } catch (error) {
-    console.log("you got this ", error);
-  }
+  mongoose
+    .connect(process.env.COSMOS_DB_URL)
+    .then(() => console.log("Connection to CosmosDB successful"))
+    .catch((err) => console.error(err));
 };
 module.exports = dbconnection;
