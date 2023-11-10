@@ -1,7 +1,6 @@
 const User = require("../database/model/user");
 const bcrypt = require("bcrypt");
 const { createSecretToken } = require("../tokenGeneration/generateToken");
-const cloudinary = require("../cloudinary/cloudinary");
 
 const handleSignUp = async (req, res) => {
   try {
