@@ -68,7 +68,7 @@ To run this project, you will need to add the following environment variables to
 
 ## Demo
 
-https://bloggle-vista.azurewebsites.net/
+[https://bloggle-vista.azurewebsites.net/](https://blogglevista.azurewebsites.net/)
 
 
 ## License
