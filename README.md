@@ -68,7 +68,7 @@ To run this project, you will need to add the following environment variables to
 
 ## Demo
 
-https://blogglevista.azurewebsites.net/
+https://blogvista-frontend.vercel.app/
 
 
 ## License
