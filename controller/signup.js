@@ -1,10 +1,12 @@
 const User = require("../database/model/user");
 const bcrypt = require("bcrypt");
 const { createSecretToken } = require("../tokenGeneration/generateToken");
+const cloudinary = require('../azuremulter/cloudinary')
+
 
 const handleSignUp = async (req, res) => {
   try {
-    const image = req.file ? req.file.url.split("?")[0] : null;
+    const result = await cloudinary.uploader.upload(req.file.path);
     if (
       !(
         req.body.email &&
@@ -29,7 +31,7 @@ const handleSignUp = async (req, res) => {
       username: req.body.username,
       email: req.body.email,
       password: hashedPassword,
-      profilePic: image,
+      profilePic: result.secure_url,
     });
     const user = await newUser.save();
     const token = createSecretToken(user._id);

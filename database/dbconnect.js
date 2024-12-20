@@ -4,7 +4,7 @@ const env = require("dotenv");
 env.config();
 const dbconnection = async () => {
   mongoose
-    .connect(process.env.COSMOS_DB_URL)
+    .connect(process.env.MONGODB_URL)
     .then(() => console.log("Connection to CosmosDB successful"))
     .catch((err) => console.error(err));
 };
