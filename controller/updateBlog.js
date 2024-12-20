@@ -1,7 +1,10 @@
 const Blog = require("../database/model/blog");
+const cloudinary = require('../azuremulter/cloudinary')
+
 
 const updateBlog = async (req, res) => {
-  const image = req.file ? req.file.url : null;
+  const result = await cloudinary.uploader.upload(req.file.path);
+
   const blogId = req.params.blogid;
 
   // Validate req.body and req.params
@@ -29,7 +32,7 @@ const updateBlog = async (req, res) => {
   const updatedBlog = {
     title: req.body.title || blog.title,
     content: req.body.content || blog.content,
-    blogThumbnail: image || blog.blogThumbnail,
+    blogThumbnail: result.secure_url || blog.blogThumbnail,
   };
 
   try {

@@ -1,12 +1,14 @@
 const User = require("../database/model/user");
 const Blog = require("../database/model/blog");
 const jwt = require("jsonwebtoken");
+const cloudinary = require('../azuremulter/cloudinary')
+
 
 require("dotenv").config();
 const createBlog = async (req, res) => {
   try {
     // console.log(req.file.url.split("?"));
-    const image = req.file ? req.file.url.split("?")[0] : null;
+    const result = await cloudinary.uploader.upload(req.file.path);
     const token = req.cookies.token;
     console.log(token);
     if (!token) {
@@ -21,7 +23,7 @@ const createBlog = async (req, res) => {
     const blog = {
       title: req.body.title,
       content: req.body.content,
-      blogThumbnail: image,
+      blogThumbnail: result.secure_url,
       createdBy: user._id,
     };
     const newBlog = new Blog(blog);
